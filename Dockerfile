@@ -7,7 +7,14 @@ RUN apt-get update && apt-get install -y git \
 	  apt-get autoremove -y && \
 	  rm -rf /var/lib/apt/lists/*
     
-RUN cd /var/www && git clone https://github.com/holao09/KodExplorer.git
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ --with-png=/usr/include/ \
+    && docker-php-ext-install -j$(nproc) gd
+    
+RUN cd /var/www && git clone https://github.com/holao09/KodExplorer.git && git checkout 0b88917b405bfa2b0410233c725c81227e9d90ee
 RUN  rm -rf /var/www/html && ln -s /var/www/KodExplorer /var/www/html
 RUN  chown -R www-data:www-data /var/www/KodExplorer
 
