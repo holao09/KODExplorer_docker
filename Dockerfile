@@ -42,3 +42,4 @@ RUN echo "ServerName localhost" > /etc/apache2/conf-available/fqdn.conf && \
 	usermod -G staff www-data
 
 EXPOSE 80
+
