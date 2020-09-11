@@ -18,8 +18,13 @@ RUN cd /var/www && git clone https://github.com/holao09/KodExplorer.git
 RUN cd /var/www/KodExplorer && git checkout d21827be1a3a8e6e8cc0e1b5baa71c1b09816495
 
 RUN  rm -rf /var/www/html && ln -s /var/www/KodExplorer /var/www/html
-RUN  chown -R www-data:www-data /var/www/KodExplorer /var/www/html
-RUN  chmod -R 777 /var/www/html /var/www/KodExplorer /opt/kodexplorer-data
+
+RUN  chown -R www-data:www-data /var/www/KodExplorer 
+RUN  chown -R www-data:www-data /var/www/html
+
+RUN  chmod -R 777 /var/www/html 
+RUN  chmod -R 777 /var/www/KodExplorer 
+RUN  chmod -R 777 /opt/kodexplorer-data
 
 # Apache + xdebug configuration
 RUN { \
