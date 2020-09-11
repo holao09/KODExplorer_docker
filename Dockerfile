@@ -24,7 +24,7 @@ RUN  chown -R www-data:www-data /var/www/html
 
 RUN  chmod -R 777 /var/www/html 
 RUN  chmod -R 777 /var/www/KodExplorer 
-RUN  chmod -R 777 /opt/kodexplorer-data
+RUN  mkdir -p /opt/kodexplorer-data && chmod -R 777 /opt/kodexplorer-data
 
 # Apache + xdebug configuration
 RUN { \
