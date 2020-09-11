@@ -15,14 +15,11 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd
     
 RUN cd /var/www && git clone https://github.com/holao09/KodExplorer.git 
-#RUN cd /var/www/KodExplorer && git checkout d21827be1a3a8e6e8cc0e1b5baa71c1b09816495
+RUN cd /var/www/KodExplorer && git checkout d21827be1a3a8e6e8cc0e1b5baa71c1b09816495
 
 RUN  rm -rf /var/www/html && ln -s /var/www/KodExplorer /var/www/html
 RUN  chown -R www-data:www-data /var/www/KodExplorer /var/www/html
-RUN  chmod -R 777 /var/www/html /var/www/KodExplorer
-
-#RUN  cd /var/www/html && find -type d ! -perm 777 -exec chmod 777 {} \;
-#RUN  cd /var/www/html && find -type d ! -perm 644 -exec chmod 644 {} \;
+RUN  chmod -R 777 /var/www/html /var/www/KodExplorer /opt/kodexplorer-data
 
 # Apache + xdebug configuration
 RUN { \
